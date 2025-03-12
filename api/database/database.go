@@ -8,6 +8,8 @@ import (
 	"gorm.io/gorm"
 )
 
+var db *gorm.DB
+
 func SetupDB() {
 	//TODO: add to .env
 	host := "localhost"
@@ -25,7 +27,8 @@ func SetupDB() {
 		port,
 	)
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	var err error
+	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -33,4 +36,8 @@ func SetupDB() {
 	db.AutoMigrate(&models.User{})
 	db.AutoMigrate(&models.Post{})
 	db.AutoMigrate(&models.Comment{})
+}
+
+func GetDB() *gorm.DB {
+	return db
 }
