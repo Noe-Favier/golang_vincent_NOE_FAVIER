@@ -7,9 +7,8 @@ type User struct {
 
 	ID uint `json:"id" gorm:"primaryKey;autoIncrement"`
 
-	Email        string `json:"-" gorm:"not null;uniqueIndex"`
-	Username     string `json:"username" gorm:"not null;uniqueIndex"`
-	PasswordHash string `json:"-" gorm:"not null"`
+	Email    string `json:"-" gorm:"not null;uniqueIndex"`
+	Username string `json:"username" gorm:"not null;uniqueIndex"`
 
 	Follows []User `json:"-" gorm:"many2many:user_follows;"`
 

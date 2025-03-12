@@ -60,6 +60,7 @@ func (r *Routes) setupPublicRoutes() {
 	public := r.router.Group("/api/public")
 	{
 		public.GET("/health", publicHandlers.HealthHandler)
+		public.POST("/login", publicHandlers.Login)
 	}
 }
 
