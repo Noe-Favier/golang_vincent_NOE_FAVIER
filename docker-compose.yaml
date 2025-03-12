@@ -1,0 +1,18 @@
+# docker-compose -p blog_noe up -d
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: gorm
+      POSTGRES_PASSWORD: gorm
+      POSTGRES_DB: blog_noe
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+
+
