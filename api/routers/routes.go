@@ -74,5 +74,10 @@ func (r *Routes) setupProtectedRoutes() {
 		//posts
 		protected.GET("/posts", privateHandlers.UserPostsByMailHandler)
 		protected.POST("/posts", privateHandlers.UploadPostHandler)
+		protected.DELETE("/posts/:post_id", privateHandlers.DeletePostHandler)
+
+		protected.POST("/comment/:post_id", privateHandlers.AddCommentHandler)
+		protected.POST("/like/:post_id", privateHandlers.LikePostHandler)
+		protected.POST("/unlike/:post_id", privateHandlers.UnlikePostHandler)
 	}
 }

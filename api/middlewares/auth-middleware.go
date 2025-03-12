@@ -24,6 +24,11 @@ func AuthMiddleware() gin.HandlerFunc {
 		if err := db.
 			Preload("Likes").
 			Preload("Posts").
+			Preload("Posts").
+			Preload("Posts.User").
+			Preload("Posts.Likes").
+			Preload("Posts.Comments").
+			Preload("Posts.Comments.User").
 			Preload("Comments").
 			Preload("Comments.User").
 			Where("email = ?", authorizationHeader).First(&user).Error; err != nil {
