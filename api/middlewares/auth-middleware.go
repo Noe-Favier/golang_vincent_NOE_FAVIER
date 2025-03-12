@@ -21,7 +21,12 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		var user models.User
-		if err := db.Where("email = ?", authorizationHeader).First(&user).Error; err != nil {
+		if err := db.
+			Preload("Likes").
+			Preload("Posts").
+			Preload("Comments").
+			Preload("Comments.User").
+			Where("email = ?", authorizationHeader).First(&user).Error; err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email"})
 			c.Abort()
 			return

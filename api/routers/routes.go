@@ -70,5 +70,9 @@ func (r *Routes) setupProtectedRoutes() {
 	protected.Use(middlewares.AuthMiddleware())
 	{
 		protected.GET("/health", privateHandlers.HealthHandler)
+
+		//posts
+		protected.GET("/posts", privateHandlers.UserPostsByMailHandler)
+		protected.POST("/posts", privateHandlers.UploadPostHandler)
 	}
 }

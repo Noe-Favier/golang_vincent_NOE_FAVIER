@@ -10,11 +10,7 @@ import (
 func Login(c *gin.Context) {
 	db := database.GetDB()
 
-	var input struct {
-		Email    string `json:"email" binding:"required"`
-		Username string `json:"username" binding:"required"`
-	}
-
+	var input models.User
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
