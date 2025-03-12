@@ -79,5 +79,9 @@ func (r *Routes) setupProtectedRoutes() {
 		protected.POST("/comment/:post_id", privateHandlers.AddCommentHandler)
 		protected.POST("/like/:post_id", privateHandlers.LikePostHandler)
 		protected.POST("/unlike/:post_id", privateHandlers.UnlikePostHandler)
+
+		//users
+		protected.POST("/follow/:user_id", privateHandlers.FollowUserByIDHandler)
+		protected.POST("/unfollow/:user_id", privateHandlers.UnfollowUserByIDHandler)
 	}
 }
